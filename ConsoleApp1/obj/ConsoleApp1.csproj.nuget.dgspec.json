@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Personal\\Interview Questions\\ThoughtWorks\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "E:\\Personal\\Interview Questions\\ThoughtWorks\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal\\Interview Questions\\ThoughtWorks\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "E:\\Personal\\Interview Questions\\ThoughtWorks\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal\\Interview Questions\\ThoughtWorks\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "outputPath": "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
