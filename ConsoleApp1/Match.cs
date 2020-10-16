@@ -24,6 +24,7 @@ namespace ConsoleApp1
                 var batsmanScore = btm.GetBatsmanScore();
 
                 _logger.DisplayInlineMessage("Batsman: " + batsmanScore + " ");
+                _logger.DisplayInlineMessage("Batsman Type: " + batsmanType + " ");
                 _logger.DisplayInlineMessage("Bowler: " + bowlerScore + " ");
                 _logger.DisplayMessage("");
 
