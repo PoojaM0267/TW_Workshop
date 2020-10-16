@@ -15,5 +15,12 @@ namespace ConsoleApp1
             Random rnd = new Random();
             return rnd.Next(min, max);
         }
+
+        public static int GenerateBoundaryScore()
+        {
+            int[] boundaryScores = new int[3] { 0, 4, 6 };
+            Random rnd = new Random();
+            return boundaryScores[rnd.Next(boundaryScores.Length)];
+        }
     }
 }
