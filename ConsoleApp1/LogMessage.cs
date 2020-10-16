@@ -8,5 +8,10 @@ namespace ConsoleApp1
         {
             Console.WriteLine(msg);
         }
+
+        public void DisplayInlineMessage(string msg)
+        {
+            Console.Write(msg);
+        }
     }
 }

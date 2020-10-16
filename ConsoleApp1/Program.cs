@@ -15,10 +15,48 @@ namespace ConsoleApp1
             var _logger =  serviceProvider
            .GetService<ILogMessage>();
 
-            Console.WriteLine("Enter the target score.");
-            int targetScore = Convert.ToInt32(Console.ReadLine());                   
+            _logger.DisplayMessage("Enter the number of overs.");
+            int totalOvers = Convert.ToInt32(Console.ReadLine());
 
-            if(GetTotalScore(serviceProvider) >= targetScore)
+            _logger.DisplayMessage("Enter the target score.");
+            int targetScore = Convert.ToInt32(Console.ReadLine());
+
+            GetTotalScore(serviceProvider, totalOvers, targetScore);            
+        }
+
+        public static void GetTotalScore(ServiceProvider serviceProvider, int totalOvers, int targetScore)
+        {
+            var _rndGenerator = serviceProvider
+          .GetService<IRandomGenerator>();
+
+            var _logger = serviceProvider
+          .GetService<ILogMessage>();
+
+            var totalScore = 0;
+
+            for (int i = 0; i < totalOvers*6; i++)
+            {
+                var bowlerScore = _rndGenerator.GenerateRandomScore(7);
+                var batsmanScore = _rndGenerator.GenerateRandomScore(7);
+
+                _logger.DisplayInlineMessage("Batsman: " + batsmanScore + " ");
+                _logger.DisplayInlineMessage("Bowler: " + bowlerScore + " ");
+                _logger.DisplayMessage("");
+
+                if (bowlerScore == batsmanScore)
+                {
+                    _logger.DisplayMessage("Batsman has lost.");
+                    return;
+                }
+
+                totalScore = totalScore + batsmanScore;
+                if (CheckTarget(totalScore, targetScore))
+                {
+                    _logger.DisplayMessage("Batsman has won.");
+                }               
+            }
+
+            if (CheckTarget(totalScore, targetScore))
             {
                 _logger.DisplayMessage("Batsman has won.");
             }
@@ -28,24 +66,11 @@ namespace ConsoleApp1
             }
         }
 
-        public static int GetTotalScore(ServiceProvider serviceProvider)
+        public static bool CheckTarget(int totalScore, int targetScore)
         {
-
-            var _rndGenerator = serviceProvider
-          .GetService<IRandomGenerator>();
-
-            var totalScore = 0;
-
-            Console.Write("Batsman : ");
-
-            for (int i = 0; i < 6; i++)
-            {
-                var score = _rndGenerator.GenerateRandomScore(7);
-                totalScore = totalScore + score;
-                Console.Write(score + " ");
-            }
-
-            return totalScore;
+            return totalScore >= targetScore;
         }
+
     }
 }
+
