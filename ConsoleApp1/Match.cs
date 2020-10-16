@@ -6,9 +6,6 @@ namespace ConsoleApp1
     {
         public static void GetMatchResults(ServiceProvider serviceProvider, int totalOvers, int targetScore)
         {
-            var _rndGenerator = serviceProvider
-          .GetService<IRandomGenerator>();
-
             var _logger = serviceProvider
           .GetService<ILogMessage>();
 
@@ -16,8 +13,8 @@ namespace ConsoleApp1
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
-                var bowlerScore = _rndGenerator.GenerateRandomScore(1, 7);
-                var batsmanScore = _rndGenerator.GenerateRandomScore(7);
+                var bowlerScore = Utility.GenerateRandomScore(1, 7);
+                var batsmanScore = Utility.GenerateRandomScore(7);
 
                 _logger.DisplayInlineMessage("Batsman: " + batsmanScore + " ");
                 _logger.DisplayInlineMessage("Bowler: " + bowlerScore + " ");
@@ -33,6 +30,7 @@ namespace ConsoleApp1
                 if (CheckTarget(totalScore, targetScore))
                 {
                     _logger.DisplayMessage("Batsman has won.");
+                    return;
                 }
             }
 
