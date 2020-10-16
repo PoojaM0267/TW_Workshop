@@ -18,10 +18,9 @@ namespace ConsoleApp1
             {
                 var bowlerScore = Utility.GenerateRandomScore(1, 7);
 
-                var batsmanType = Utility.GenerateRandomScore(0, 2);
-               //var batsmanScore = GetBatsmanScore(batsmanType);
+                var batsmanType = Utility.GenerateRandomScore(0, 3);
 
-                IBatsman btm = factory.GetScore(batsmanType);
+                IBatsman btm = factory.GetBatsman(batsmanType);
                 var batsmanScore = btm.GetBatsmanScore();
 
                 _logger.DisplayInlineMessage("Batsman: " + batsmanScore + " ");
@@ -47,18 +46,5 @@ namespace ConsoleApp1
         {
             return currentTotalScore >= targetScore;
         }
-
-        //public static int GetBatsmanScore(int batsmanType)
-        //{
-        //  switch(batsmanType)
-        //    {
-        //        case 0:
-        //            return Utility.GenerateRandomScore(7);
-        //        case 1:
-        //            return Utility.GenerateBoundaryScore();
-        //        default:
-        //            return Utility.GenerateRandomScore(7);
-        //    }
-        //}
     }
 }

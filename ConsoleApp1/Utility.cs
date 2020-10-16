@@ -22,5 +22,12 @@ namespace ConsoleApp1
             Random rnd = new Random();
             return boundaryScores[rnd.Next(boundaryScores.Length)];
         }
+
+        public static int GenerateDefensiveScore()
+        {
+            int[] defensiveScores = new int[4] { 0, 1, 2, 3 };
+            Random rnd = new Random();
+            return defensiveScores[rnd.Next(defensiveScores.Length)];
+        }
     }
 }

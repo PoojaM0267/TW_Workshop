@@ -8,14 +8,6 @@ namespace ConsoleApp1.Models
     }
     public class Batsman : IBatsman
     {
-        private int batsmanTypeId;
-
-        public int BatsmanTypeId 
-        {
-            get { return batsmanTypeId; }  
-            set { batsmanTypeId = 0; }  
-        }
-
         public int GetBatsmanScore()
         {
             return Utility.GenerateRandomScore(7);
@@ -24,20 +16,17 @@ namespace ConsoleApp1.Models
 
     public class HitterBatsman : IBatsman
     {
-
-        private int batsmanTypeId;
-
-        public int BatsmanTypeId
-        {
-            get { return batsmanTypeId; }
-            set { batsmanTypeId = 1; }
-        }
-
         public int GetBatsmanScore()
         {
             return Utility.GenerateBoundaryScore();
         }
     }
 
-
+    public class DefensiveBatsman : IBatsman
+    {
+        public int GetBatsmanScore()
+        {
+            return Utility.GenerateDefensiveScore();
+        }
+    }
 }

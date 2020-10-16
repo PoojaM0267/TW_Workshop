@@ -4,7 +4,7 @@ namespace ConsoleApp1
 {
     public class ConcreteBatsmanFactory: BatsmanFactory
     {
-        public override IBatsman GetScore(int type)
+        public override IBatsman GetBatsman(int type)
         {
             switch (type)
             {
@@ -12,6 +12,8 @@ namespace ConsoleApp1
                     return new Batsman();
                 case 1:
                     return new HitterBatsman();
+                case 2:
+                    return new DefensiveBatsman();
                 default:
                     return new Batsman();
             }
