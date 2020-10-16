@@ -9,6 +9,7 @@ namespace ConsoleApp1
         {
             var serviceProvider = new ServiceCollection()
             .AddSingleton<ILogMessage, LogMessage>()
+            .AddScoped<IRandomGenerator, RandomGenerator>()
             .BuildServiceProvider();
 
             var _logger =  serviceProvider
@@ -17,7 +18,7 @@ namespace ConsoleApp1
             Console.WriteLine("Enter the target score.");
             int targetScore = Convert.ToInt32(Console.ReadLine());                   
 
-            if(GetTotalScore() >= targetScore)
+            if(GetTotalScore(serviceProvider) >= targetScore)
             {
                 _logger.DisplayMessage("Batsman has won.");
             }
@@ -27,16 +28,19 @@ namespace ConsoleApp1
             }
         }
 
-        public static int GetTotalScore()
+        public static int GetTotalScore(ServiceProvider serviceProvider)
         {
-            Random rnd = new Random();
+
+            var _rndGenerator = serviceProvider
+          .GetService<IRandomGenerator>();
+
             var totalScore = 0;
 
             Console.Write("Batsman : ");
 
             for (int i = 0; i < 6; i++)
             {
-                var score = rnd.Next(7);
+                var score = _rndGenerator.GenerateRandomScore(7);
                 totalScore = totalScore + score;
                 Console.Write(score + " ");
             }
