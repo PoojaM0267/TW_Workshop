@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MLuuX8jWz/qx//ytjTc6EZHQli5Ia841Nvoh4TvjDhxDQHFErekbX7QiSucH6g/mMsklpV72p6ReEW420UG35A==",
+  "dgSpecHash": "kOiDzf7Jw79M5U9NVnijMk4FH9aMR5/nwjHQfZ+IsQXSx0qRRyZ69GWkcmrcH+N5PDXvWVzt/g808MM4TzqfSg==",
   "success": true,
   "projectFilePath": "E:\\Demo Projects\\JobRelated\\SchoolApplication\\TW_Workshop\\ConsoleApp1\\ConsoleApp1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.9\\microsoft.extensions.dependencyinjection.3.1.9.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.9\\microsoft.extensions.dependencyinjection.abstractions.3.1.9.nupkg.sha512"
+  ],
   "logs": []
 }
