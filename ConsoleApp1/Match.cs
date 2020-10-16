@@ -4,12 +4,12 @@ namespace ConsoleApp1
 {
     public static class Match
     {
-        public static void GetMatchResults(ServiceProvider serviceProvider, int totalOvers, int targetScore)
+        public static bool GetMatchResults(ServiceProvider serviceProvider, int totalOvers, int targetScore)
         {
             var _logger = serviceProvider
           .GetService<ILogMessage>();
 
-            var totalScore = 0;
+            var currentTotalScore = 0;
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
@@ -22,31 +22,22 @@ namespace ConsoleApp1
 
                 if (bowlerScore == batsmanScore)
                 {
-                    _logger.DisplayMessage("Batsman has lost.");
-                    return;
+                    return false;
                 }
 
-                totalScore = totalScore + batsmanScore;
-                if (CheckTarget(totalScore, targetScore))
+                currentTotalScore = currentTotalScore + batsmanScore;
+                if (CheckTarget(currentTotalScore, targetScore))
                 {
-                    _logger.DisplayMessage("Batsman has won.");
-                    return;
+                    return true;
                 }
             }
 
-            if (CheckTarget(totalScore, targetScore))
-            {
-                _logger.DisplayMessage("Batsman has won.");
-            }
-            else
-            {
-                _logger.DisplayMessage("Batsman has lost");
-            }
+            return CheckTarget(currentTotalScore, targetScore);
         }
 
-        public static bool CheckTarget(int totalScore, int targetScore)
+        public static bool CheckTarget(int currentTotalScore, int targetScore)
         {
-            return totalScore >= targetScore;
+            return currentTotalScore >= targetScore;
         }
     }
 }

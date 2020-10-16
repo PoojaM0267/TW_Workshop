@@ -21,7 +21,16 @@ namespace ConsoleApp1
             _logger.DisplayMessage("Enter the target score.");
             int targetScore = Convert.ToInt32(Console.ReadLine());
 
-            Match.GetMatchResults(serviceProvider, totalOvers, targetScore);          
+            var matchResult = Match.GetMatchResults(serviceProvider, totalOvers, targetScore);
+
+            if (matchResult)
+            {
+                _logger.DisplayMessage("Batsman has won.");
+            }
+            else
+            {
+                _logger.DisplayMessage("Batsman has lost");
+            }
         }
     }
 }
