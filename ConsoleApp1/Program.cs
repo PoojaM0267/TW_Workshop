@@ -9,7 +9,6 @@ namespace ConsoleApp1
         {
             var serviceProvider = new ServiceCollection()
             .AddSingleton<ILogMessage, LogMessage>()
-            .AddScoped<IRandomGenerator, RandomGenerator>()
             .BuildServiceProvider();
 
             var _logger =  serviceProvider
