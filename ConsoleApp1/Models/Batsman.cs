@@ -29,4 +29,12 @@ namespace ConsoleApp1.Models
             return Utility.GenerateDefensiveScore();
         }
     }
+
+    public class TailEndBatsman : IBatsman
+    {
+        public int GetBatsmanScore()
+        {
+            return Utility.GenerateRandomScore(7);
+        }
+    }
 }

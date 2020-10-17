@@ -7,12 +7,14 @@ namespace ConsoleApp1
         {
             switch (scoringStrategyId)
             {
-                case (int)ScoringStrategyId.Normal:
+                case (int)BatsmanType.Normal:
                     return Utility.GenerateRandomScore(7);
-                case (int)ScoringStrategyId.Hit:
+                case (int)BatsmanType.Hit:
                     return Utility.GenerateBoundaryScore();
-                case (int)ScoringStrategyId.Defensive:
+                case (int)BatsmanType.Defensive:
                     return Utility.GenerateDefensiveScore();
+                case (int)BatsmanType.TailEnd:
+                    return Utility.GenerateRandomScore(7);
                 default:
                     return Utility.GenerateRandomScore(7);
             }

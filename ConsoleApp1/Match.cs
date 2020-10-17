@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ConsoleApp1.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp1
 {
@@ -9,8 +10,8 @@ namespace ConsoleApp1
             var _logger = serviceProvider
           .GetService<ILogMessage>();
 
-            var currentTotalScore = 0;           
-            ScoreFactory scfactory = new ConcreteScoreFactory();           
+            var currentTotalScore = 0;   
+            BatsmanFactory btfactory = new ConcreteBatsmanFactory();
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
@@ -19,19 +20,28 @@ namespace ConsoleApp1
                 var bowlerScore = Utility.GenerateRandomScore(1, 7);
 
                 // get batsman and score details
-                var batsmanScoringType = Utility.GenerateRandomScore(0, 3);
-                var score = scfactory.GetScore(batsmanScoringType);
+                var batsmanType = Utility.GenerateRandomScore(0, 4);
+                IBatsman btm = btfactory.GetBatsman(batsmanType);
+                var batsmanScore = btm.GetBatsmanScore();
 
-                DisplayConsoleMessages(_logger, score, batsmanScoringType, bowlerScore, bowlerRandomTypeId);                
+                DisplayConsoleMessages(_logger, batsmanScore, batsmanType, bowlerScore, bowlerRandomTypeId);                
 
-                if (bowlerRandomTypeId != (int)BowlerTypes.PartTime)
+                if (bowlerRandomTypeId != (int)BowlerType.PartTime)
                 {
-                    if (bowlerScore == score)
+                    if (bowlerScore == batsmanScore)
                     {
                        return false;
                     }
 
-                    currentTotalScore = currentTotalScore + score;
+                    currentTotalScore = currentTotalScore + batsmanScore;
+                }
+
+                if(batsmanType == (int)BatsmanType.TailEnd)
+                {
+                    if((bowlerScore % 2 == batsmanScore % 2))
+                    {
+                        return false;
+                    }
                 }
 
                 // check for target
