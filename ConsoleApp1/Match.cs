@@ -1,5 +1,4 @@
-﻿using ConsoleApp1.Models;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp1
 {
@@ -12,28 +11,40 @@ namespace ConsoleApp1
 
             var currentTotalScore = 0;
 
-            BatsmanFactory factory = new ConcreteBatsmanFactory();
+            //BatsmanFactory factory = new ConcreteBatsmanFactory();
             ScoreFactory scfactory = new ConcreteScoreFactory();
+            BowlerFactory bwlfactory = new ConcreteBowlerFactory();
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
+                // get bowler details             
+                var bowlerRandomTypeId = Utility.GenerateRandomScore(0, 2);
+                var bowler = bwlfactory.GetBowler(bowlerRandomTypeId);               
+                var bowlerTypeId = bowler.GetBowlerType();
+
                 var bowlerScore = Utility.GenerateRandomScore(1, 7);
 
+                // get batsman and score details
                 var batsmanScoringType = Utility.GenerateRandomScore(0, 3);
-
                 var score = scfactory.GetScore(batsmanScoringType);
 
-                _logger.DisplayInlineMessage("Batsman: " + score + " ");
+                _logger.DisplayInlineMessage("Batsman Score: " + score + " ");
                 _logger.DisplayInlineMessage("Batsman Type: " + batsmanScoringType + " ");
-                _logger.DisplayInlineMessage("Bowler: " + bowlerScore + " ");
+                _logger.DisplayMessage("");
+                _logger.DisplayInlineMessage("Bowler Score: " + bowlerScore + " ");
+                _logger.DisplayInlineMessage("Bowler Type Id: " + bowlerTypeId + " ");
                 _logger.DisplayMessage("");
 
-                if (bowlerScore == score)
+                if (bowlerTypeId != (int)BowlerTypes.PartTime)
                 {
-                    return false;
+                    if (bowlerScore == score)
+                    {
+                       return false;
+                    }
+
+                    currentTotalScore = currentTotalScore + score;
                 }
 
-                currentTotalScore = currentTotalScore + score;
                 if (CheckTarget(currentTotalScore, targetScore))
                 {
                     return true;

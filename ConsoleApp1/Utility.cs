@@ -35,7 +35,12 @@ namespace ConsoleApp1
     {
         Normal,         // 0
         Hit,            // 1
-        Defensive,      // 2
-       
+        Defensive,      // 2       
+    }
+
+    public enum BowlerTypes
+    {
+        Normal,         // 0
+        PartTime,       // 1
     }
 }
