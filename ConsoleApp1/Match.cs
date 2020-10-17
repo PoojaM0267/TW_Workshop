@@ -24,6 +24,7 @@ namespace ConsoleApp1
 
                 DisplayConsoleMessages(_logger, batsmanScore, batsmanScoringType, bowlerScore, bowlerRandomTypeId);                
 
+                // To get a batsman out, it has to be a normal bowler
                 if (bowlerRandomTypeId != (int)BowlerTypes.PartTime)
                 {
                     if (bowlerScore == batsmanScore)
