@@ -31,11 +31,12 @@ namespace ConsoleApp1
         }
     }
 
-    public enum ScoringStrategyId
+    public enum BatsmanType
     {
         Normal,         // 0
         Hit,            // 1
-        Defensive,      // 2       
+        Defensive,      // 2   
+        TailEnd         // 3
     }
 
     public enum BowlerTypes

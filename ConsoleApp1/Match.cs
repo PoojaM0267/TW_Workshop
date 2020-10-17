@@ -20,18 +20,28 @@ namespace ConsoleApp1
 
                 // get batsman and score details
                 var batsmanScoringType = Utility.GenerateRandomScore(0, 3);
-                var score = scfactory.GetScore(batsmanScoringType);
+                var batsmanScore = scfactory.GetScore(batsmanScoringType);
 
-                DisplayConsoleMessages(_logger, score, batsmanScoringType, bowlerScore, bowlerRandomTypeId);                
+                DisplayConsoleMessages(_logger, batsmanScore, batsmanScoringType, bowlerScore, bowlerRandomTypeId);                
 
                 if (bowlerRandomTypeId != (int)BowlerTypes.PartTime)
                 {
-                    if (bowlerScore == score)
+                    if (bowlerScore == batsmanScore)
                     {
                        return false;
                     }
 
-                    currentTotalScore = currentTotalScore + score;
+                    currentTotalScore = currentTotalScore + batsmanScore;
+                }
+
+                if (batsmanScoringType == (int)BatsmanType.TailEnd)
+                {
+                    if ((bowlerScore % 2 == batsmanScore % 2))
+                    {
+                        return false;
+                    }
+
+                    currentTotalScore = currentTotalScore + batsmanScore;
                 }
 
                 // check for target
