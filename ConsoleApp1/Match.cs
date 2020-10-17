@@ -9,33 +9,22 @@ namespace ConsoleApp1
             var _logger = serviceProvider
           .GetService<ILogMessage>();
 
-            var currentTotalScore = 0;
-
-            //BatsmanFactory factory = new ConcreteBatsmanFactory();
-            ScoreFactory scfactory = new ConcreteScoreFactory();
-            BowlerFactory bwlfactory = new ConcreteBowlerFactory();
+            var currentTotalScore = 0;           
+            ScoreFactory scfactory = new ConcreteScoreFactory();           
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
                 // get bowler details             
                 var bowlerRandomTypeId = Utility.GenerateRandomScore(0, 2);
-                var bowler = bwlfactory.GetBowler(bowlerRandomTypeId);               
-                var bowlerTypeId = bowler.GetBowlerType();
-
                 var bowlerScore = Utility.GenerateRandomScore(1, 7);
 
                 // get batsman and score details
                 var batsmanScoringType = Utility.GenerateRandomScore(0, 3);
                 var score = scfactory.GetScore(batsmanScoringType);
 
-                _logger.DisplayInlineMessage("Batsman Score: " + score + " ");
-                _logger.DisplayInlineMessage("Batsman Type: " + batsmanScoringType + " ");
-                _logger.DisplayMessage("");
-                _logger.DisplayInlineMessage("Bowler Score: " + bowlerScore + " ");
-                _logger.DisplayInlineMessage("Bowler Type Id: " + bowlerTypeId + " ");
-                _logger.DisplayMessage("");
+                DisplayConsoleMessages(_logger, score, batsmanScoringType, bowlerScore, bowlerRandomTypeId);                
 
-                if (bowlerTypeId != (int)BowlerTypes.PartTime)
+                if (bowlerRandomTypeId != (int)BowlerTypes.PartTime)
                 {
                     if (bowlerScore == score)
                     {
@@ -45,6 +34,7 @@ namespace ConsoleApp1
                     currentTotalScore = currentTotalScore + score;
                 }
 
+                // check for target
                 if (CheckTarget(currentTotalScore, targetScore))
                 {
                     return true;
@@ -57,6 +47,16 @@ namespace ConsoleApp1
         public static bool CheckTarget(int currentTotalScore, int targetScore)
         {
             return currentTotalScore >= targetScore;
+        }
+
+        public static void DisplayConsoleMessages(ILogMessage _logger, int score, int batsmanScoringType, int bowlerScore, int bowlerRandomTypeId)
+        {
+            _logger.DisplayInlineMessage("Batsman Score: " + score + " ");
+            _logger.DisplayInlineMessage("Batsman Type: " + batsmanScoringType + " ");
+            _logger.DisplayMessage("");
+            _logger.DisplayInlineMessage("Bowler Score: " + bowlerScore + " ");
+            _logger.DisplayInlineMessage("Bowler Type Id: " + bowlerRandomTypeId + " ");
+            _logger.DisplayMessage("");
         }
     }
 }
