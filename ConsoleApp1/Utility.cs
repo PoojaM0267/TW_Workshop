@@ -30,4 +30,12 @@ namespace ConsoleApp1
             return defensiveScores[rnd.Next(defensiveScores.Length)];
         }
     }
+
+    public enum ScoringStrategyId
+    {
+        Normal,         // 0
+        Hit,            // 1
+        Defensive,      // 2
+       
+    }
 }

@@ -13,27 +13,27 @@ namespace ConsoleApp1
             var currentTotalScore = 0;
 
             BatsmanFactory factory = new ConcreteBatsmanFactory();
+            ScoreFactory scfactory = new ConcreteScoreFactory();
 
             for (int i = 0; i < totalOvers * 6; i++)
             {
                 var bowlerScore = Utility.GenerateRandomScore(1, 7);
 
-                var batsmanType = Utility.GenerateRandomScore(0, 3);
+                var batsmanScoringType = Utility.GenerateRandomScore(0, 3);
 
-                IBatsman btm = factory.GetBatsman(batsmanType);
-                var batsmanScore = btm.GetBatsmanScore();
+                var score = scfactory.GetScore(batsmanScoringType);
 
-                _logger.DisplayInlineMessage("Batsman: " + batsmanScore + " ");
-                _logger.DisplayInlineMessage("Batsman Type: " + batsmanType + " ");
+                _logger.DisplayInlineMessage("Batsman: " + score + " ");
+                _logger.DisplayInlineMessage("Batsman Type: " + batsmanScoringType + " ");
                 _logger.DisplayInlineMessage("Bowler: " + bowlerScore + " ");
                 _logger.DisplayMessage("");
 
-                if (bowlerScore == batsmanScore)
+                if (bowlerScore == score)
                 {
                     return false;
                 }
 
-                currentTotalScore = currentTotalScore + batsmanScore;
+                currentTotalScore = currentTotalScore + score;
                 if (CheckTarget(currentTotalScore, targetScore))
                 {
                     return true;
