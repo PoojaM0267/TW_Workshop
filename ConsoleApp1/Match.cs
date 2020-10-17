@@ -33,14 +33,21 @@ namespace ConsoleApp1
                        return false;
                     }
 
+                    if (batsmanType == (int)BatsmanType.TailEnd)
+                    {
+                        if ((bowlerScore % 2 == batsmanScore % 2))
+                        {
+                            return false;
+                        }
+                    }
+
                     currentTotalScore = currentTotalScore + batsmanScore;
                 }
-
-                if(batsmanType == (int)BatsmanType.TailEnd)
+                else
                 {
-                    if((bowlerScore % 2 == batsmanScore % 2))
+                    if (bowlerScore != batsmanScore)
                     {
-                        return false;
+                        currentTotalScore = currentTotalScore + batsmanScore;
                     }
                 }
 
